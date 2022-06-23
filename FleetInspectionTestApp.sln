@@ -17,9 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileApp.iOS", "MobileApp\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileApp", "MobileApp\MobileApp\MobileApp.csproj", "{118F5D6A-D353-455C-A286-9196B818AAB7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB_dump", "DB_dump", "{933D62FE-08B3-45C5-813F-B7C4128871A0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BF4CFF7B-E709-44DB-922E-513F4D1DDAE3}"
 	ProjectSection(SolutionItems) = preProject
-		FleetInspection.DB\DB_dump\Fleet_DB_dump.sql = FleetInspection.DB\DB_dump\Fleet_DB_dump.sql
+		DB_Dump.sql = DB_Dump.sql
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
