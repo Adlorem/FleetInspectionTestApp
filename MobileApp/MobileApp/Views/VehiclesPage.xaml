@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:MobileApp.Helpers"
+             x:Class="MobileApp.Views.VehiclesPage"
+             Title="Pojazdy">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                <Entry
+                    Placeholder="wpisz czego szukasz..."
+                    HorizontalOptions="FillAndExpand"
+                    Text="{Binding Search}" />
+                <Button Text="Szukaj" 
+                    IsEnabled="{Binding IsBusy, Converter={helpers:InverseBoolConverter}}"
+                    Command="{Binding SearchVehiclesCommand}"/>
+            </StackLayout>
+        </StackLayout>
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Spacing="10">
+                <ListView 
+                    ItemsSource="{Binding Vehicles}"
+                    SelectedItem="{Binding SelectedVehicle, Mode=TwoWay}"
+                    RowHeight="100"
+                    ItemTapped="ListView_ItemTapped"                      
+                    >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                        Grid.Row="0"
+                                        Grid.Column="0">
+                                        <Image HeightRequest="100" Source="{Binding Image}" />
+                                    </StackLayout>
+                                    <StackLayout
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        HorizontalOptions="Start"
+                                        Orientation="Horizontal"
+                                        Spacing="10"
+                                        VerticalOptions="Center">
+                                        <StackLayout Margin="0,0,0,0" VerticalOptions="Center">
+                                            <Label Text="Nr rej:"/>
+                                            <Label Text="Marka:"/>
+                                            <Label Text="Model:"/>
+                                            <Label Text="Sprawny:"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        HorizontalOptions="Start"
+                                        Orientation="Horizontal"
+                                        Spacing="10"
+                                        VerticalOptions="Center">
+                                        <StackLayout Margin="0,0,0,0" VerticalOptions="Center">
+                                            <Label Text="{Binding Identifier}"/>
+                                            <Label Text="{Binding MakeName}"/>
+                                            <Label Text="{Binding ModelName}"/>
+                                            <Label Text="{Binding HasValidInspection}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" />
+    </Grid>
+
+</ContentPage>
